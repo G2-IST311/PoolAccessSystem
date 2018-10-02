@@ -17,7 +17,6 @@ abstract public class Employee implements Person {
         this.firstName = newFirstName;
         this.lastName = newLastName;
         
-        
     }
     
     

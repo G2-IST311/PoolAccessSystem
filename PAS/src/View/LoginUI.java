@@ -234,6 +234,10 @@ public class LoginUI extends javax.swing.JFrame {
     public void setStatusLabel(String status){
         this.statusLabel.setText(status);
     }
+    
+    public void setEmpIDLabel(String label){
+        this.empIdField.setText("");
+    }
 
     public void toggleLoginButton(boolean active){
         this.loginButton.setEnabled(active);

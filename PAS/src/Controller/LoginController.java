@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,6 +19,7 @@ import java.io.FileNotFoundException;
 public class LoginController {
     
     private LoginUI loginUI;
+    private MainMenuController mainMenuController;
     private String empID;
     private String password;
     private Pool pool;
@@ -28,6 +31,10 @@ public class LoginController {
         loginUI.addLoginButtonListener(new LoginButtonListener());
         loginUI.addPasswordFieldKeyPressed(keyListener);
 
+    }
+    
+    public LoginController getLoginController(){
+        return this;
     }
 
     private KeyListener keyListener = new KeyListener() {
@@ -64,13 +71,16 @@ public class LoginController {
                     Employee tempEmp = pool.findEmployee(empID);
 
                     if(tempEmp.authenticate(empID, password)) { 
-                        System.out.println("Login succesful!");
+                        
                         loginUI.setStatusLabel("");
                         
-                        //navigate to application here
-                        
-                        
-                        
+                        try {
+                            
+                            mainMenuController = new MainMenuController(getLoginController(), tempEmp);
+                            loginUI.setVisible(false);
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         
                     }
                     else 
@@ -88,5 +98,15 @@ public class LoginController {
         }
 
     } // end LoginButtonListener
+    
+    public void resetScreen() {
+        loginUI.resetPasswordField();
+        loginUI.setEmpIDLabel("");
+        loginUI.toggleLoginButton(false);
+    }
+    
+    public void toggleLoginUiVisible(boolean state){
+        loginUI.setVisible(state);
+    }
     
 }

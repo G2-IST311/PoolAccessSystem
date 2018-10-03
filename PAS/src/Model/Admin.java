@@ -9,12 +9,12 @@ public class Admin extends Employee {
  
     public Admin(String newFirstName, String newLastName) {
         super(newFirstName, newLastName);
-        /*
+
         roles.add(RoleEnum.LOOKUP);
         roles.add(RoleEnum.CREATE_PROFILE);
         roles.add(RoleEnum.EDIT_PROFILE);
         roles.add(RoleEnum.VIEW_REPORTS);
-        */
+
     }
 
     @Override

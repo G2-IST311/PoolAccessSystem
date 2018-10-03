@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Admin;
 import Model.Employee;
+import Model.RoleEnum;
 import View.MainMenuUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,18 +37,10 @@ public class MainMenuController  {
 
         mainMenuUi.welcome(currentEmployee.getFirstName());
 
-        boolean isAdmin = false;
-        if(currentEmployee instanceof Admin){
-            isAdmin = true;
-        }
+        mainMenuUi.toggleRegisterBtn(currentEmployee.isFunctionPermitted(RoleEnum.CREATE_PROFILE));
+        mainMenuUi.toggleReportsBtn(currentEmployee.isFunctionPermitted(RoleEnum.VIEW_REPORTS));
         
-        if (isAdmin) {
-            mainMenuUi.toggleRegisterBtn(true);
-            mainMenuUi.toggleReportsBtn(true);
-        } else {
-            mainMenuUi.toggleRegisterBtn(false);
-            mainMenuUi.toggleReportsBtn(false);
-        }
+        
                     
                     
     }

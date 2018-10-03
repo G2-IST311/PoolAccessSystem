@@ -65,7 +65,6 @@ public class Pool {
     public boolean doesEmpIdExist(String _empID){
         for (Employee emp : this.employees) 
         { 
-
             if(emp.getCredential().getEmpID().toLowerCase().equals(_empID)){
                 return true;
             }
@@ -76,6 +75,7 @@ public class Pool {
         for (Employee emp : this.employees) 
         { 
             if(emp.getCredential().getEmpID().toLowerCase().equals(_empID)){
+                //System.out.println("Found!");
                 return emp;
             }
         }

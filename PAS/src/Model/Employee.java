@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -16,6 +17,7 @@ abstract public class Employee implements Person {
     public Employee(String newFirstName, String newLastName){
         this.firstName = newFirstName;
         this.lastName = newLastName;
+        roles = new HashSet<>();
         
     }
     

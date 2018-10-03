@@ -41,18 +41,6 @@ public class MainMenuController  {
         mainMenuUi.toggleReportsBtn(currentEmployee.isFunctionPermitted(RoleEnum.VIEW_REPORTS));
         
         
-        boolean isAdmin = false;
-        if(currentEmployee instanceof Admin){
-            isAdmin = true;
-        }
-        
-        if (isAdmin) {
-            mainMenuUi.toggleRegisterBtn(true);
-            mainMenuUi.toggleReportsBtn(true);
-        } else {
-            mainMenuUi.toggleRegisterBtn(false);
-            mainMenuUi.toggleReportsBtn(false);
-        }
                     
                     
     }

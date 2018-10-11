@@ -2,6 +2,7 @@
 package Controller;
 
 import Model.Employee;
+import Model.EmployeeList;
 import Model.Pool;
 import View.LoginUI;
 import java.awt.event.ActionEvent;
@@ -22,11 +23,11 @@ public class LoginController {
     private MainMenuController mainMenuController;
     private String empID;
     private String password;
-    private Pool pool;
+    private EmployeeList employeeList;
     
     public LoginController() throws FileNotFoundException{
         loginUI = new LoginUI();
-        pool = new Pool();
+        employeeList = new EmployeeList();
         
         loginUI.addLoginButtonListener(new LoginButtonListener());
         loginUI.addPasswordFieldKeyPressed(keyListener);
@@ -52,6 +53,11 @@ public class LoginController {
         
     }; //end keyListener
     
+    public EmployeeList getEmployeeList(){
+        return this.employeeList;
+    }
+            
+    
     private class LoginButtonListener implements ActionListener {
 
         @Override
@@ -65,10 +71,10 @@ public class LoginController {
             } 
             else 
             {
-                boolean isEmpId = pool.doesEmpIdExist(empID);
+                boolean isEmpId = employeeList.doesEmpIdExist(empID);
         
                 if(isEmpId){
-                    Employee tempEmp = pool.findEmployee(empID);
+                    Employee tempEmp = employeeList.findEmployee(empID);
 
                     if(tempEmp.authenticate(empID, password)) { 
                         
@@ -77,7 +83,9 @@ public class LoginController {
                         try {
                             
                             mainMenuController = new MainMenuController(getLoginController(), tempEmp);
+                            resetScreen();
                             loginUI.setVisible(false);
+                            
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -105,7 +113,10 @@ public class LoginController {
         loginUI.toggleLoginButton(false);
     }
     
-    public void toggleLoginUiVisible(boolean state){
+    public void toggleLoginUiVisible(boolean state) throws FileNotFoundException{
+        if(state){
+            this.employeeList.refreshEmployeeList();
+        }
         loginUI.setVisible(state);
     }
     

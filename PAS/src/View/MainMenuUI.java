@@ -90,7 +90,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         });
 
         registerBtn.setBackground(new java.awt.Color(0, 204, 255));
-        registerBtn.setText("Find Swimmer");
+        registerBtn.setText("Register Swimmer");
         registerBtn.setAlignmentY(0.0F);
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

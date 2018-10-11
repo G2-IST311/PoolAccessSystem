@@ -12,6 +12,8 @@ import View.MainMenuUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,19 +41,24 @@ public class MainMenuController  {
 
         mainMenuUi.toggleRegisterBtn(currentEmployee.isFunctionPermitted(RoleEnum.CREATE_PROFILE));
         mainMenuUi.toggleReportsBtn(currentEmployee.isFunctionPermitted(RoleEnum.VIEW_REPORTS));
-        
-        
-                    
-                    
+                 
     }
+    
+    public void saveEmployee(String _type, String _firstName, String _lastName, String _password){
+        loginController.getEmployeeList().saveEmployee(_type, _firstName, _lastName, _password);
+    }
+    
     
     //reset the log-in screen and make it visible again
     private class LogOutBtnListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e){
-            loginController.resetScreen();
-            loginController.toggleLoginUiVisible(true);
+            try {
+                loginController.toggleLoginUiVisible(true);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(MainMenuController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             mainMenuUi.setVisible(false);
         }
     }
@@ -61,7 +68,7 @@ public class MainMenuController  {
 
         @Override
         public void actionPerformed(ActionEvent e){
-            //TODO: navigates to register new swimmer scree
+            //TODO: navigates to register new swimmer screen
             System.out.println("test - Register Screen");
         }
     }

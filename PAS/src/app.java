@@ -10,6 +10,7 @@ public class app {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException {
         LoginController loginController = new LoginController();
@@ -30,8 +31,6 @@ public class app {
             empID = starpa
             password = rock
                 
-        
-            TEST
         */
         
     }

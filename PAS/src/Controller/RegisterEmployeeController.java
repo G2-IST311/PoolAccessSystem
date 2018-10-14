@@ -48,6 +48,8 @@ public class RegisterEmployeeController {
                     
                     REUI.setGoodMessage("Submitted Successfully");
                     MMC.saveEmployee(REUI.getRole(), REUI.getfNameTxtField(), REUI.getlNameTxtField(), REUI.getEmpPWField());
+                    MMC.toggleMainMenuUI(true);
+                    REUI.setVisible(false);
                 }     
             }    
             
@@ -59,7 +61,8 @@ public class RegisterEmployeeController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-           REUI.setVisible(false);
+            MMC.toggleMainMenuUI(true);
+            REUI.setVisible(false);
         }
         
     }

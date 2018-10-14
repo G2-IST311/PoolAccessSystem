@@ -12,6 +12,7 @@ public class Admin extends Employee {
 
         roles.add(RoleEnum.LOOKUP);
         roles.add(RoleEnum.CREATE_PROFILE);
+        roles.add(RoleEnum.CREATE_EMPLOYEE);
         roles.add(RoleEnum.EDIT_PROFILE);
         roles.add(RoleEnum.VIEW_REPORTS);
 

@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import Model.Admin;
 import Model.Employee;
 import Model.RoleEnum;
 import View.MainMenuUI;
@@ -36,16 +35,26 @@ public class MainMenuController  {
         mainMenuUi.addPoolBtnListener(new PoolBtnListener());
         mainMenuUi.addReportsBtnListener(new ReportsBtnListener());
         mainMenuUi.addLogOutBtnListener(new LogOutBtnListener());
+        mainMenuUi.addCreateEmployeeBtnListener(new CreateEmployeeBtnListener());
 
         mainMenuUi.welcome(currentEmployee.getFirstName());
 
         mainMenuUi.toggleRegisterBtn(currentEmployee.isFunctionPermitted(RoleEnum.CREATE_PROFILE));
         mainMenuUi.toggleReportsBtn(currentEmployee.isFunctionPermitted(RoleEnum.VIEW_REPORTS));
-                 
+        mainMenuUi.toggleCreateEmpBtn(currentEmployee.isFunctionPermitted(RoleEnum.CREATE_EMPLOYEE));         
     }
     
     public void saveEmployee(String _type, String _firstName, String _lastName, String _password){
         loginController.getEmployeeList().saveEmployee(_type, _firstName, _lastName, _password);
+    }
+    
+    public MainMenuController getMainMenuController()
+    {
+        return this; 
+    }  
+    
+    public void toggleMainMenuUI(boolean state){
+        this.mainMenuUi.setVisible(state);
     }
     
     
@@ -63,14 +72,24 @@ public class MainMenuController  {
         }
     }
     
+    
+    //navigate to the register new swimmer screen
+    private class CreateEmployeeBtnListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            RegisterEmployeeController regEmp = new RegisterEmployeeController(getMainMenuController());
+            toggleMainMenuUI(false);
+        }
+    }
+            
     //navigate to the register new swimmer screen
     private class RegisterBtnListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e){
-            //TODO: navigates to register new swimmer screen
-            System.out.println("test - Register Screen");
-        }
+            //TODO: navigate to register swimmer screen
+            System.out.println("test - Register Swimmer Screen");        }
     }
 
     //navigate to the search screen

@@ -10,6 +10,7 @@ public enum RoleEnum {
     CHECKIN("Check In"),
     CHECKOUT("Check out"),
     VIEW_REPORTS("View reports"),
+    CREATE_EMPLOYEE("Create employee"),
     CREATE_PROFILE("Register a new customer"),
     EDIT_PROFILE("Edit customer's profile");
     

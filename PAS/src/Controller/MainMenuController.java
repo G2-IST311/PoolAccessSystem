@@ -48,6 +48,11 @@ public class MainMenuController  {
         loginController.getEmployeeList().saveEmployee(_type, _firstName, _lastName, _password);
     }
     
+    public MainMenuController getMainMenuController()
+    {
+        return this; 
+    }        
+    
     
     //reset the log-in screen and make it visible again
     private class LogOutBtnListener implements ActionListener {
@@ -68,8 +73,7 @@ public class MainMenuController  {
 
         @Override
         public void actionPerformed(ActionEvent e){
-            //TODO: navigates to register new swimmer screen
-            System.out.println("test - Register Screen");
+            RegisterEmployeeController regEmp = new RegisterEmployeeController(getMainMenuController());
         }
     }
 

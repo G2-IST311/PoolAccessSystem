@@ -29,6 +29,8 @@ public class LoginController {
         employeeList = new EmployeeList();
         
         loginUI.addLoginButtonListener(new LoginButtonListener());
+        loginUI.addQuitButtonListener(new QuitButtonListener());
+        
         loginUI.addPasswordFieldKeyPressed(keyListener);
 
     }
@@ -55,7 +57,16 @@ public class LoginController {
     public EmployeeList getEmployeeList(){
         return this.employeeList;
     }
-            
+    
+    private class QuitButtonListener implements ActionListener 
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+        
+    }
     
     private class LoginButtonListener implements ActionListener {
 
